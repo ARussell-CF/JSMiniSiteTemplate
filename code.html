@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en" class="h-100">
+
+<head>
+    <title>Hundo: Coding Challenge by Mark Spectre</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+    <scrip src="https://kit.fontawesome.com/5db21ba9c6.js" crossorigin="anonymous"></script>
+
+    <link rel="icon" type="image/png" href="img/favicon-32x32.png" />
+    <link href="css/site.css" rel="stylesheet">
+    <link href="css/prism.css" rel="stylesheet">
+
+</head>
+
+<body class="d-flex flex-column h-100">
+
+    <!-- ======= Nav Section ======= -->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html"><img src="/img/MspectreMark.svg" alt="" width="30" height="24"
+                    class="d-inline-block align-text-top">
+                HUNDO</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0 ">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="app.html">The App</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="code.html">The Code</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ======= Main Section ======= -->
+    <main id="content" class="flex-shrink-0">
+        <div class="container col-xxl-8 px-4 py-5 mt-5">
+            <h2 class="border-1 border-bottom border-dark">The Code</h2>
+            <div class="row">
+                <div class="col-lg-8 col-sm-12">
+                    <pre class="line-numbers"><code class="language-javascript">
+                    //get starting values from the screen
+                    function getValues() {
+                    
+                        //get the values from the page
+                        let startValue = document.getElementById("startValue").value;
+                        let endValue = document.getElementById("endValue").value;
+                    
+                        //generate the numbers return them in an array
+                        let numbers = generateNumbers(startValue, endValue);
+                    
+                        //display the results on the page
+                        displayNumbers(numbers)
+                    }
+                    
+                    //Generate numbers based on the start and endvalue
+                    function generateNumbers(startValue, endValue) {
+                    
+                        let numbers = [];
+                        //loop over the values from start to end.
+                        for (let index = startValue; index <= endValue; index++) {
+                            numbers.push(index);
+                        }
+                        return numbers;
+                    }
+                    
+                    
+                    //display the numbers to the screen
+                    function displayNumbers(numbers) {
+                    
+                        let className = "even";
+                        let templateRows = "";
+                    
+                        for (let index = 0; index < numbers.length; index++) {
+                            let number = numbers[index];
+                           
+                            if (number % 2 == 0) {
+                                className = "even"
+                            } else {
+                                className = "odd"
+                            }
+                            //Note **Prism shows this line inccorect see the page source.
+                            templateRows += <tr><td class="${className}">${number}</td></tr>;
+                        }
+                    
+                        document.getElementById("results").innerHTML = templateRows;
+                    
+                    }
+                    </code></pre>
+                </div>
+                <div class="col-lg-4 col-sm-12">
+                    <p>The code is structured in three functions.</p>
+                    <h5>getValues</h5>
+                    <p>getValues accepts(gets) the user input from the page. It utilizes <strong>getElementById</strong>
+                        to pull the values from the page. It passes those values to the <strong>generateNumbers</strong>
+                        function. The function <strong>generateNumbers</strong> returns an array of values and passes
+                        that array to the <strong>displayNumbers</strong> function.</p>
+                    <h5>generateNumbers</h5>
+                    <p>generateNumbers takes in two parameters startValue and endValue. We create a variable (numbers)
+                        that holds an array. A for loop is used to generate all of the numbers between
+                        <strong>startValue</strong> and <strong>endValue</strong></p>
+                    <h5>displayNumbers</h5>
+                    <p>displayNumbers takes in one parameter numbers. The variable numbers is an array the holds values
+                        between <strong>startValue</strong> and <strong>endValue</strong>. We create a variable
+                        (className) that holds the name of a CSS class that we will use to bold the numbers. We create a
+                        variable templateRows that will hold the html we will write to the page.</p>
+                    <p>A for loop is used to check all of the numbers to see if they are even or odd. The remainder operator
+                        (%) is used to see if the number is divisable by two. If it returns zero the it is even. If not (else) its odd. The
+                        correct className is injected into the html row for display. Each interation of the loop adds to
+                        the teamplateRows variable. At the end of the loop the resulting HTML rows are written to the page.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ======= Footer Section ======= -->
+    <footer class="footer mt-auto py-3 bg-dark">
+        <div class="container-fluid">
+            <div class="row row-cols-1 row-cols-lg-3 gy-2">
+                <div class="col text-light order-last order-lg-first ">
+                    <div><span class="text-muted">&copy2021</span> Mark Spectre | mspectre@moon.com</div>
+                </div>
+                <div class="col d-flex align-items-center justify-content-start justify-content-lg-center">
+                    <img src="/img/MarkSpectre_WhtLogo.svg" alt="" height="24">
+                </div>
+                <div class="col d-flex align-items-center justify-content-start justify-content-lg-end">
+                    <div class="row">
+                        <div class="col social"><a href="#"><i class="fab fa-linkedin fa-2x"></i></a></div>
+                        <div class="col social"><a href="#"><i class="fab fa-github fa-2x"></i></a></div>
+                        <div class="col social"><a href="#"><i class="fab fa-twitter fa-2x"></i></a></div>
+                        <div class="col social"><a href="#"><i class="fab fa-youtube fa-2x"></i></a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+
+</body>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous">
+</script>
+<script src="js/prism.js"></script>
+<script>
+    Prism.plugins.NormalizeWhitespace.setDefaults({
+        'remove-trailing': true,
+        'remove-indent': true,
+        'left-trim': true,
+        'right-trim': true
+    })
+</script>
+
+</html>
